@@ -6,6 +6,7 @@ package com.ahmadfauzirahman.sakato.rest;
 
 
 import com.ahmadfauzirahman.sakato.response.PerbendaharaanResponse;
+import com.ahmadfauzirahman.sakato.response.SpmResponse;
 import com.ahmadfauzirahman.sakato.response.UserResponse;
 
 import java.util.List;
@@ -63,5 +64,10 @@ public interface ApiInterface {
             @Field("nohp") String nohp,
             @Field("kode") String kode
     );
+
+    //spm
+
+    @GET("spmbykd/{id}")
+    Call<SpmResponse> spmbykd(@Path("id") String id);
 
 }
