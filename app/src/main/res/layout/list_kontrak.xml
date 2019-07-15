@@ -16,45 +16,49 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:background="#e4cce4"
-        android:elevation="0.1dp"
-        app:cardCornerRadius="12dp">
+        android:elevation="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="@dimen/cardview_default_radius">
 
         <LinearLayout
-            android:id="@+id/lspm"
+            android:id="@+id/lkontrak"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/mJenisSpm"
+                android:id="@+id/mKontrakNomor"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="SPM JENIS"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Kontrak Nomor"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18dip"
                 android:textStyle="bold"></TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alasan"
-                android:paddingTop="5dp"
-                android:id="@+id/mAlasanSpm"
-                />
 
             <TextView
-                android:id="@+id/mTanggalSpm"
+                android:id="@+id/mKontrakPenolakan"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Tanggal Penolakan"
-                android:paddingTop="5dp"
-                android:textSize="12dip"></TextView>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Alasan" />
+
             <TextView
-                android:id="@+id/mStatusSpm"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/mTanggalPenolakan"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:padding="10dip"
+                android:text="Tanggal Penolakan"
+                android:textSize="12dip"></TextView>
+
+            <TextView
+                android:id="@+id/mStatusPenolakan"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 android:text="Status"
-                android:paddingTop="10dp"
                 android:textSize="11dip"></TextView>
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -38,9 +38,6 @@ public class KontrakFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_kontrak, container, false);
 
-
-
-
         return view;
     }
 
