@@ -50,7 +50,7 @@ public class SpmAdapter extends RecyclerView.Adapter<SpmAdapter.SpmViewHolder> {
     public class SpmViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout spmliner;
-        TextView mJenisSpm, mTanggalSpm, mStatusSpm,mAlasan;
+        TextView mJenisSpm, mTanggalSpm, mStatusSpm, mAlasan;
 
         public SpmViewHolder(@NonNull View itemView) {
 

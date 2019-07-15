@@ -51,9 +51,8 @@ public class SpmFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        view = inflater.inflate(R.layout.fragment_spm, container, false);
-        swipeRefreshLayout = view.findViewById(R.id.swpspm);
         sessionManager = new SessionManager(getContext());
+        swipeRefreshLayout = view.findViewById(R.id.swpspms);
 
         stakeholder = sessionManager.getUserDetail().get("penUsername");
 
@@ -68,6 +67,8 @@ public class SpmFragment extends Fragment {
 
             }
         });
+        view = inflater.inflate(R.layout.fragment_spm, container, false);
+
         return view;
     }
 

@@ -5,6 +5,7 @@ package com.ahmadfauzirahman.sakato.rest;
  */
 
 
+import com.ahmadfauzirahman.sakato.response.KontrakResponse;
 import com.ahmadfauzirahman.sakato.response.PerbendaharaanResponse;
 import com.ahmadfauzirahman.sakato.response.SpmResponse;
 import com.ahmadfauzirahman.sakato.response.UserResponse;
@@ -69,5 +70,7 @@ public interface ApiInterface {
 
     @GET("spmbykd/{id}")
     Call<SpmResponse> spmbykd(@Path("id") String id);
-
+    //kontrak
+    @GET("kontrakbykd/{id}")
+    Call<KontrakResponse> kontrakbykd(@Path("id") String id);
 }
