@@ -52,7 +52,6 @@ public class SpmFragment extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.fragment_spm, container, false);
-        recyclerView = view.findViewById(R.id.reyspm);
         swipeRefreshLayout = view.findViewById(R.id.swpspm);
         sessionManager = new SessionManager(getContext());
 
@@ -65,6 +64,8 @@ public class SpmFragment extends Fragment {
             public void onRefresh() {
                 // loading = ProgressDialog.show(context,null,"Sedang mendapatkan berita",true,false);
                 swipeRefreshLayout.setRefreshing(false);
+                all(stakeholder);
+
             }
         });
         return view;

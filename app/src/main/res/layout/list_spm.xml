@@ -29,11 +29,19 @@
                 android:id="@+id/mJenisSpm"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:padding="10dip"
                 android:text="SPM JENIS"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18dip"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alasan"
+                android:id="@+id/mAlasanSpm"
+                android:layout_marginLeft="10dp"
+                />
 
             <TextView
                 android:id="@+id/mTanggalSpm"

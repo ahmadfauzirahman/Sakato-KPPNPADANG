@@ -35,9 +35,10 @@ public class SpmAdapter extends RecyclerView.Adapter<SpmAdapter.SpmViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SpmViewHolder spmViewHolder, int i) {
-        spmViewHolder.mJenisSpm.setText(spmModels.get(i).getJenis());
+        spmViewHolder.mJenisSpm.setText(spmModels.get(i).getSpmJenis());
         spmViewHolder.mTanggalSpm.setText(spmModels.get(i).getSpmTanggalPenolakan());
         spmViewHolder.mStatusSpm.setText(spmModels.get(i).getSpmStatus());
+        spmViewHolder.mAlasan.setText(spmModels.get(i).getSpamPenolakan());
     }
 
     @Override
@@ -49,7 +50,7 @@ public class SpmAdapter extends RecyclerView.Adapter<SpmAdapter.SpmViewHolder> {
     public class SpmViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout spmliner;
-        TextView mJenisSpm, mTanggalSpm, mStatusSpm;
+        TextView mJenisSpm, mTanggalSpm, mStatusSpm,mAlasan;
 
         public SpmViewHolder(@NonNull View itemView) {
 
@@ -57,6 +58,7 @@ public class SpmAdapter extends RecyclerView.Adapter<SpmAdapter.SpmViewHolder> {
 
             spmliner = (LinearLayout) itemView.findViewById(R.id.lspm);
             mJenisSpm = itemView.findViewById(R.id.mJenisSpm);
+            mAlasan = itemView.findViewById(R.id.mAlasanSpm);
             mTanggalSpm = itemView.findViewById(R.id.mTanggalSpm);
             mStatusSpm = itemView.findViewById(R.id.mStatusSpm);
 
