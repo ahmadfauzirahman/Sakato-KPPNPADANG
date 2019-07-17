@@ -35,25 +35,23 @@ public class SpmFragment extends Fragment {
     public SpmFragment() {
         // Required empty public constructor
     }
+    RecyclerView recyclerView;
 
     SwipeRefreshLayout swipeRefreshLayout;
     SessionManager sessionManager;
     String stakeholder;
 
-    RecyclerView recyclerView;
-    //    private MapView mapView;
-//    private GoogleMap gMap;
-    private static final String MAP_VIEW_BUNDLE_KEY = "AIzaSyCYCQmU7s8YUEOb7v2-yh2ywAcRMxs6OUI";
     View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_spm, container, false);
 
         sessionManager = new SessionManager(getContext());
-        swipeRefreshLayout = view.findViewById(R.id.swpspms);
-
+        swipeRefreshLayout = view.findViewById(R.id.swpspm);
+        recyclerView = (RecyclerView) view.findViewById(R.id.reyspm);
         stakeholder = sessionManager.getUserDetail().get("penUsername");
 
         all(stakeholder);
@@ -67,28 +65,27 @@ public class SpmFragment extends Fragment {
 
             }
         });
-        view = inflater.inflate(R.layout.fragment_spm, container, false);
 
         return view;
     }
 
-    private void all(String id) {
-        final  RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.reyspm);
+    private void all(String stakeholder) {
+        final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.reyspm);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
-        apiService.spmbykd(id).enqueue(new Callback<SpmResponse>() {
+        apiService.spmbykd(stakeholder).enqueue(new Callback<SpmResponse>() {
             @Override
             public void onResponse(Call<SpmResponse> call, Response<SpmResponse> response) {
                 System.out.println("OnResponse Url" + response.toString());
                 System.out.println("OnResponse Data" + response.body().toString());
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<SpmModel> spmModels = response.body().getData();
-                    recyclerView.setAdapter(new SpmAdapter(spmModels,R.layout.list_spm,getContext()));
-                }else{
+                    recyclerView.setAdapter(new SpmAdapter(spmModels, R.layout.list_spm, getContext()));
+                } else {
                     System.out.println("OnResponse Data" + response.body().toString());
 
-                    Toast.makeText(getContext(),"Tidak Terhubung KeJaringan",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Tidak Terhubung KeJaringan", Toast.LENGTH_SHORT).show();
                 }
             }
 

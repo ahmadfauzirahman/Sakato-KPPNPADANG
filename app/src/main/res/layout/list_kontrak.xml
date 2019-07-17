@@ -16,21 +16,20 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:background="#e4cce4"
-        android:elevation="@dimen/cardview_default_elevation"
-        app:cardCornerRadius="@dimen/cardview_default_radius">
+        android:elevation="0.1dp"
+        app:cardCornerRadius="12dp">
 
         <LinearLayout
             android:id="@+id/lkontrak"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/mKontrakNomor"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="Kontrak Nomor"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18dip"
@@ -39,25 +38,23 @@
             <TextView
                 android:id="@+id/mKontrakPenolakan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Alasan" />
+                android:paddingTop="5dp"
+                android:layout_height="match_parent"
+                android:text="Pengujian SPP-UP/TUPs sampai dengan penerbitan SPM-UP/TUP oleh PP-SPM diselesaikan paling lambat 2 (dua) hari kerja setelah SPP-UP/TUP beserta dokumen pendukung diterima secara lengkap dan benar dari PPK." />
 
             <TextView
                 android:id="@+id/mTanggalPenolakan"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:padding="10dip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="Tanggal Penolakan"
+                android:paddingTop="5dp"
                 android:textSize="12dip"></TextView>
 
             <TextView
                 android:id="@+id/mStatusPenolakan"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:paddingTop="10dp"
+                android:layout_height="match_parent"
                 android:text="Status"
                 android:textSize="11dip"></TextView>
         </LinearLayout>

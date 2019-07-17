@@ -61,6 +61,9 @@ public class KontrakFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.fragment_kontrak, container, false);
+
         // Inflate the layout for this fragment
         sessionManager = new SessionManager(getContext());
         swipeRefreshLayout = view.findViewById(R.id.skontrak);
@@ -77,7 +80,6 @@ public class KontrakFragment extends Fragment {
 
             }
         });
-        view = inflater.inflate(R.layout.fragment_kontrak, container, false);
 
         return view;
     }

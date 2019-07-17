@@ -20,41 +20,42 @@
         app:cardCornerRadius="12dp">
 
         <LinearLayout
-            android:id="@+id/lspm"
+            android:id="@+id/lsupplier"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/mJenisSpm"
+                android:id="@+id/mSupplierNama"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="SPM JENIS"
+                android:text="NAMA SUPPLIER"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18dip"
                 android:textStyle="bold"></TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alasan"
-                android:paddingTop="5dp"
-                android:id="@+id/mAlasanSpm"
-                />
 
             <TextView
-                android:id="@+id/mTanggalSpm"
+                android:id="@+id/mSupplierAlasan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Tanggal Penolakan"
                 android:paddingTop="5dp"
-                android:textSize="12dip"></TextView>
+                android:text="Pengujian SPP-UP/TUPs sampai dengan penerbitan SPM-UP/TUP oleh PP-SPM diselesaikan paling lambat 2 (dua) hari kerja setelah SPP-UP/TUP beserta dokumen pendukung diterima secara lengkap dan benar dari PPK." />
+
             <TextView
-                android:id="@+id/mStatusSpm"
+                android:id="@+id/mSupplierTanggal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Status"
+                android:paddingTop="5dp"
+                android:text="Tanggal Penolakan"
+                android:textSize="12dip"></TextView>
+
+            <TextView
+                android:id="@+id/mStatusSupplier"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:paddingTop="10dp"
+                android:text="Status"
                 android:textSize="11dip"></TextView>
         </LinearLayout>
     </android.support.v7.widget.CardView>
