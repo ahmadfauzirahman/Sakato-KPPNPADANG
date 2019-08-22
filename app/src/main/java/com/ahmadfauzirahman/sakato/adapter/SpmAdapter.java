@@ -1,6 +1,7 @@
 package com.ahmadfauzirahman.sakato.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ahmadfauzirahman.sakato.R;
+import com.ahmadfauzirahman.sakato.SpmDetailActivity;
 import com.ahmadfauzirahman.sakato.model.SpmModel;
 
 import java.util.List;
@@ -39,6 +41,7 @@ public class SpmAdapter extends RecyclerView.Adapter<SpmAdapter.SpmViewHolder> {
         spmViewHolder.mTanggalSpm.setText(spmModels.get(i).getSpmTanggalPenolakan());
         spmViewHolder.mStatusSpm.setText(spmModels.get(i).getSpmStatus());
         spmViewHolder.mAlasan.setText(spmModels.get(i).getSpamPenolakan());
+        spmViewHolder.mSpmId.setText(spmModels.get(i).getSpmID());
     }
 
     @Override
@@ -50,17 +53,28 @@ public class SpmAdapter extends RecyclerView.Adapter<SpmAdapter.SpmViewHolder> {
     public class SpmViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout spmliner;
-        TextView mJenisSpm, mTanggalSpm, mStatusSpm, mAlasan;
+        TextView mJenisSpm, mTanggalSpm, mStatusSpm, mAlasan, mSpmId;
 
-        public SpmViewHolder(@NonNull View itemView) {
+        public SpmViewHolder(@NonNull final View itemView) {
 
             super(itemView);
 
             spmliner = (LinearLayout) itemView.findViewById(R.id.lspm);
             mJenisSpm = itemView.findViewById(R.id.mJenisSpm);
+            mSpmId = itemView.findViewById(R.id.mSpmId);
             mAlasan = itemView.findViewById(R.id.mAlasanSpm);
             mTanggalSpm = itemView.findViewById(R.id.mTanggalSpm);
             mStatusSpm = itemView.findViewById(R.id.mStatusSpm);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), SpmDetailActivity.class);
+                    intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("id", mSpmId.getText());
+                    itemView.getContext().startActivity(intent);
+                }
+            });
 
         }
     }

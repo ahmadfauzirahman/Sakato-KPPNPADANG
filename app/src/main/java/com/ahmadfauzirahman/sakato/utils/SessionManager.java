@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 
+import com.ahmadfauzirahman.sakato.FCMService;
 import com.ahmadfauzirahman.sakato.model.UserModel;
 
 import java.util.HashMap;
@@ -28,6 +29,7 @@ SessionManager {
     public static final String penUsername = "penUsername";
     public static final String penPassword = "penPassword";
     public static final String penLvlAkses = "penLvlAkses";
+    public static final String penToken = "penToken";
 
 
     public Context get_context() {
@@ -39,6 +41,11 @@ SessionManager {
         this._context = context;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         editor = sharedPreferences.edit();
+    }
+
+    public void saveToken(String fcm) {
+        editor.putString(penToken, fcm);
+        editor.commit();
     }
 
     public void createLoginSession(UserModel user) {
@@ -61,9 +68,19 @@ SessionManager {
         return user;
     }
 
+    public String getToken() {
+        return sharedPreferences.getString(penToken, "");
+    }
+
     public void logoutUser() {
         // Clearing all data from Shared Preferences
-        editor.clear();
+        editor.putBoolean(IS_LOGGED_IN, false);
+        editor.putString(penID, "");
+        editor.putString(penNama, "");
+        editor.putString(penUsername, "");
+        editor.putString(penLvlAkses, "");
+        editor.putString(penPassword, "");
+//        editor.commit();
         editor.commit();
     }
 

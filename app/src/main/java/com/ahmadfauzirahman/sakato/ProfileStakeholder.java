@@ -13,14 +13,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ahmadfauzirahman.sakato.response.PerbendaharaanResponse;
+import com.ahmadfauzirahman.sakato.model.StakeholderModel;
+import com.ahmadfauzirahman.sakato.response.StakeholderResponse;
 import com.ahmadfauzirahman.sakato.rest.ApiClient;
 import com.ahmadfauzirahman.sakato.rest.ApiInterface;
 import com.ahmadfauzirahman.sakato.utils.SessionManager;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,47 +30,63 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FormBendahara extends AppCompatActivity {
+public class ProfileStakeholder extends AppCompatActivity {
     SessionManager sessionManager;
     ApiInterface apiService =
             ApiClient.getClient().create(ApiInterface.class);
-    String vnama, vjabatan, vemail, vnohp;
-    private static final String TAG = "FormBendaharaActivity";
+    String kd, em, desk, nm, sk;
+    private static final String TAG = "Profile Stake Holder";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_bendahara);
-        final EditText namalengkap = (EditText) findViewById(R.id.etNamaBendaharaadd);
-        final EditText jabatan = (EditText) findViewById(R.id.etJabatanPerbendaharanadd);
-        final EditText email = (EditText) findViewById(R.id.etEmailadd);
-        final EditText nohp = (EditText) findViewById(R.id.etNoHpadd);
-        final Button btnsave = (Button) findViewById(R.id.btntambahperbendaharaan);
+        setContentView(R.layout.activity_profile_stakeholder);
+
         sessionManager = new SessionManager(this);
         final String stakeholder = sessionManager.getUserDetail().get("penUsername");
-
-        btnsave.setOnClickListener(new View.OnClickListener() {
+        final TextView kodestakeholder = findViewById(R.id.etKodeStakeholder);
+        final TextView email = findViewById(R.id.etEmailStakeholder);
+        final TextView deskripsi = findViewById(R.id.etDeskripsi);
+        final TextView nama = findViewById(R.id.etNamaStakeholder);
+        final Button btnstakeholder = findViewById(R.id.btnstakeholder);
+        kodestakeholder.setText(stakeholder);
+        apiService.profile(stakeholder).enqueue(new Callback<StakeholderResponse>() {
             @Override
-            public void onClick(View view) {
-                vnama = namalengkap.getText().toString();
-                vjabatan = jabatan.getText().toString();
-                vemail = email.getText().toString();
-                vnohp = nohp.getText().toString();
-                if (vjabatan.equals("PPK") || vjabatan.equals("KPA") || vjabatan.equals("Bendahara") || vjabatan.equals("PPSPM")) {
-                    save(vnama, vjabatan, vemail, vnohp, stakeholder);
+            public void onResponse(Call<StakeholderResponse> call, Response<StakeholderResponse> response) {
+                System.out.println("Perbendaharaan Response" + response.toString());
+                if (response.isSuccessful()) {
+                    List<StakeholderModel> stakeholderModels = response.body().getDataStakeHolder();
+                    StakeholderModel stakeholderModel = stakeholderModels.get(0);
+                    email.setText(stakeholderModel.getStakeEmail());
+                    deskripsi.setText(stakeholderModel.getStake());
+                    nama.setText(stakeholderModel.getStakeNama());
+
+                    btnstakeholder.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            em = email.getText().toString();
+                            kd = deskripsi.getText().toString();
+                            nm = nama.getText().toString();
+                            edit(kd, em, nm, kodestakeholder.toString());
+                        }
+                    });
                 } else {
-                    showdialog("gagal");
+                    Toast.makeText(getApplicationContext(), "TIDAK TERHUBUNG KEDALAM SERVER", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
 
+            @Override
+            public void onFailure(Call<StakeholderResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "TIDAK TERHUBUNG KEDALAM SERVER" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                System.out.println("Data Response" + t.getLocalizedMessage());
+            }
+        });
     }
 
-    private void save(final String vnama, String vjabatan, String vemail, String vnohp, String kd) {
-        System.out.println("Nama " + vnama + " Jabatan " + vjabatan + " No Handphone " + vnohp + " vid " + kd.toString());
-        apiService.add(vnama, vjabatan, vemail, vnohp, kd).enqueue(new Callback<PerbendaharaanResponse>() {
+    private void edit(String kd, String em, String nm, String kodestakeholder) {
+        apiService.edit(nm, kodestakeholder, em, kd).enqueue(new Callback<StakeholderResponse>() {
             @Override
-            public void onResponse(Call<PerbendaharaanResponse> call, Response<PerbendaharaanResponse> response) {
+            public void onResponse(Call<StakeholderResponse> call, Response<StakeholderResponse> response) {
                 Log.d(TAG, "onResponse: Berhasil Merubah" + response.body());
                 Log.d(TAG, "onResponseDaata: Data" + response.toString());
                 if (response.isSuccessful()) {
@@ -76,25 +94,24 @@ public class FormBendahara extends AppCompatActivity {
                     if (success) {
                         showdialog("sukses");
 
-                        Intent intent = new Intent(getApplicationContext(), ListPerbendaharaan.class);
-                        startActivity(intent);
                     } else {
                         Log.d(TAG, "onResponseGagal" + response.toString());
-                        Toast.makeText(getApplicationContext(), "Tidak Berhasil Merubah Data Perbendaharaan", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), ListPerbendaharaan.class);
+                        Toast.makeText(getApplicationContext(), "Tidak Berhasil Data Merubah Data Profile", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), ProfileStakeholder.class);
                         startActivity(intent);
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Tidak Berhasil Merubah bendahara" + vnama, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), ListPerbendaharaan.class);
+                    Log.d(TAG, "onResponseGagal" + response.toString());
+                    Toast.makeText(getApplicationContext(), "Tidak Berhasil Merubah Profile", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), ProfileStakeholder.class);
                     startActivity(intent);
                 }
             }
 
             @Override
-            public void onFailure(Call<PerbendaharaanResponse> call, Throwable t) {
-                System.out.println("Tidak Konek" + t.getLocalizedMessage());
-                showdialog("pending");
+            public void onFailure(Call<StakeholderResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Gagal terhubung dengan server", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onResponseGagal" + t.getLocalizedMessage());
             }
         });
     }
@@ -104,12 +121,12 @@ public class FormBendahara extends AppCompatActivity {
                 this);
 //        AlertDialog.Builder(this, );
 //        alertDialogBuilder.B
-        LayoutInflater factory = LayoutInflater.from(FormBendahara.this);
+        LayoutInflater factory = LayoutInflater.from(ProfileStakeholder.this);
         switch (id) {
             case "sukses":
                 final View view = factory.inflate(R.layout.sample, null);
 
-                String title = "Berhasil Menambahkan Data Perbendaharaan";
+                String title = "Berhasil Merubah Data Perbendaharaan";
                 SpannableStringBuilder ssBuilder = new SpannableStringBuilder(title);
                 ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#ffffff"));
                 ssBuilder.setSpan(
@@ -127,7 +144,7 @@ public class FormBendahara extends AppCompatActivity {
             case "gagal":
                 final View view1 = factory.inflate(R.layout.gagal, null);
 
-                String gagal = "Gagal Menambahkan Data Perbendaharaan";
+                String gagal = "Gagal Merubah Data";
                 SpannableStringBuilder gagalss = new SpannableStringBuilder(gagal);
                 ForegroundColorSpan foregroundColorSpangagal = new ForegroundColorSpan(Color.parseColor("#ffffff"));
                 gagalss.setSpan(

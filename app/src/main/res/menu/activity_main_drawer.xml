@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_dashboard_black_24dp"
             android:title="Dashboard" />
         <item
+            android:id="@+id/pengumuman"
+            android:icon="@drawable/ic_perm_device_information_black_24dp"
+            android:title="Pengumuman" />
+        <item
             android:id="@+id/perbendaharaan"
             android:icon="@drawable/ic_people_outline_black_24dp"
             android:title="Perbendaharaan" />
@@ -26,8 +30,8 @@
                 android:title="Share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:icon="@drawable/ic_nature_people_black_24dp"
+                android:title="Profile Saya" />
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/logout"

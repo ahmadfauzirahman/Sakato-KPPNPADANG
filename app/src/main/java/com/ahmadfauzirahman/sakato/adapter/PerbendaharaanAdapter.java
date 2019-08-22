@@ -48,6 +48,7 @@ public class PerbendaharaanAdapter extends RecyclerView.Adapter<PerbendaharaanAd
         perbendaharaanViewHolder.namalengkap.setText(mFilteredList.get(i).getPenNamaLengkap());
         perbendaharaanViewHolder.jabatan.setText(mFilteredList.get(i).getPenJabatan());
         perbendaharaanViewHolder.id_perbendaharaan.setText(mFilteredList.get(i).getPenId());
+        perbendaharaanViewHolder.gender.setText(mFilteredList.get(i).getPenGender());
         Picasso.get().load(ServerConfig.IMAGE_FOLDER).into(perbendaharaanViewHolder.image);
     }
 
@@ -91,7 +92,7 @@ public class PerbendaharaanAdapter extends RecyclerView.Adapter<PerbendaharaanAd
 
     public class PerbendaharaanViewHolder extends RecyclerView.ViewHolder {
         LinearLayout pBendaharaaan;
-        TextView namalengkap, jabatan, id_perbendaharaan;
+        TextView namalengkap, jabatan, id_perbendaharaan,gender;
         ImageView image;
 
         public PerbendaharaanViewHolder(@NonNull final View itemView) {
@@ -101,6 +102,7 @@ public class PerbendaharaanAdapter extends RecyclerView.Adapter<PerbendaharaanAd
             namalengkap = (TextView) itemView.findViewById(R.id.namalengkap);
             jabatan = (TextView) itemView.findViewById(R.id.jabatan);
             id_perbendaharaan = (TextView) itemView.findViewById(R.id.id_perbendaharaan);
+            gender = (TextView) itemView.findViewById(R.id.gender);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

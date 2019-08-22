@@ -22,6 +22,9 @@ public class PerbendaharaanModel {
     @SerializedName("penStakeholder")
     @Expose
     private String penStakeholder;
+    @SerializedName("penGender")
+    @Expose
+    private String penGender;
 
     public String getPenId() {
         return penId;
@@ -69,6 +72,14 @@ public class PerbendaharaanModel {
 
     public void setPenStakeholder(String penStakeholder) {
         this.penStakeholder = penStakeholder;
+    }
+
+    public String getPenGender() {
+        return penGender;
+    }
+
+    public void setPenGender(String penGender) {
+        this.penGender = penGender;
     }
 
 }

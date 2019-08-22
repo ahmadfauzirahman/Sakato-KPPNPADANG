@@ -14,14 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
-import com.ahmadfauzirahman.sakato.LoginAc;
 import com.ahmadfauzirahman.sakato.R;
 import com.ahmadfauzirahman.sakato.adapter.KontrakAdapter;
-import com.ahmadfauzirahman.sakato.adapter.SpmAdapter;
 import com.ahmadfauzirahman.sakato.model.KontrakModel;
-import com.ahmadfauzirahman.sakato.model.SpmModel;
 import com.ahmadfauzirahman.sakato.response.KontrakResponse;
-import com.ahmadfauzirahman.sakato.response.SpmResponse;
 import com.ahmadfauzirahman.sakato.rest.ApiClient;
 import com.ahmadfauzirahman.sakato.rest.ApiInterface;
 import com.ahmadfauzirahman.sakato.utils.SessionManager;

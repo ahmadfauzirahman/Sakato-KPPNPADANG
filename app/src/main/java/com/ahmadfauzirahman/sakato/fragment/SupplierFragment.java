@@ -14,9 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ahmadfauzirahman.sakato.R;
-import com.ahmadfauzirahman.sakato.adapter.KontrakAdapter;
 import com.ahmadfauzirahman.sakato.adapter.SupplierAdapter;
-import com.ahmadfauzirahman.sakato.model.KontrakModel;
 import com.ahmadfauzirahman.sakato.model.SupplierModel;
 import com.ahmadfauzirahman.sakato.response.SupplierResponse;
 import com.ahmadfauzirahman.sakato.rest.ApiClient;

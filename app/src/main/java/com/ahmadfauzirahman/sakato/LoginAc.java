@@ -2,7 +2,6 @@ package com.ahmadfauzirahman.sakato;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +44,7 @@ public class LoginAc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final TextView logotext = findViewById(R.id.logotext);
-        final TextView register = findViewById(R.id.register);
+//        final TextView register = findViewById(R.id.register);
 
 
         Typeface mediumlogo = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
@@ -60,21 +59,14 @@ public class LoginAc extends AppCompatActivity {
                 loginUser();
             }
         });
-
-        // register
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RegisterAc.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     private void loginUser() {
         username = etusername.getText().toString();
         password = etpassword.getText().toString();
+        String token = sessionManager.getToken();
+//        Log.d("Login TOken", token);
+        System.out.println("Token Firebase " + token );
         apiService.login(username, password).enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {

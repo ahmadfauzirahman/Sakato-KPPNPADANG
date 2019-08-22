@@ -5,22 +5,22 @@ package com.ahmadfauzirahman.sakato.rest;
  */
 
 
+import com.ahmadfauzirahman.sakato.response.InitResponse;
 import com.ahmadfauzirahman.sakato.response.KontrakResponse;
+import com.ahmadfauzirahman.sakato.response.PengumumanResponse;
 import com.ahmadfauzirahman.sakato.response.PerbendaharaanResponse;
 import com.ahmadfauzirahman.sakato.response.SpmResponse;
+import com.ahmadfauzirahman.sakato.response.StakeholderResponse;
 import com.ahmadfauzirahman.sakato.response.SupplierResponse;
+import com.ahmadfauzirahman.sakato.response.TokenResponse;
 import com.ahmadfauzirahman.sakato.response.UserResponse;
 
-import java.util.List;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Created by ahmafauziraman on 18/04/18.
@@ -72,6 +72,14 @@ public interface ApiInterface {
     @GET("spmbykd/{id}")
     Call<SpmResponse> spmbykd(@Path("id") String id);
 
+
+    @GET("spmbyid/{id}")
+    Call<SpmResponse> spmbyid(@Path("id") String id);
+
+    //kontrak
+    @GET("spmupdate/{id}/{jenis}")
+    Call<SpmResponse> updatePending(@Path("id") String id, @Path("jenis") String jenis);
+
     //kontrak
     @GET("kontrakbykd/{id}")
     Call<KontrakResponse> kontrakbykd(@Path("id") String id);
@@ -79,4 +87,46 @@ public interface ApiInterface {
     //supplier
     @GET("supbykd/{id}")
     Call<SupplierResponse> supbykd(@Path("id") String id);
+
+    //profile
+    @GET("profile/{id}")
+    Call<StakeholderResponse> profile(@Path("id") String id);
+
+    // form bendhara add
+    @FormUrlEncoded
+    @POST("editprofile")
+    Call<StakeholderResponse> edit(
+            @Field("stakeNama") String stakeNama,
+            @Field("stakeKode") String stakeKode,
+            @Field("stakeEmail") String stakeEmail,
+            @Field("stake") String stake
+    );
+
+
+    @FormUrlEncoded
+    @POST("inserttoken")
+    Call<TokenResponse> inserttoken(
+            @Field("stakeholder") String stakeholder,
+            @Field("token") String token
+    );
+
+
+    // form bendhara add
+    @FormUrlEncoded
+    @POST("deletetoken")
+    Call<TokenResponse> deletetoken(
+            @Field("stakeKode") String stakeKode
+    );
+
+    // pengumuman
+    @GET("pengumuman")
+    Call<PengumumanResponse> pengumuman();
+
+    // pengumuman
+    @GET("monitoringdaemon")
+    Call<InitResponse> jumlahloket();
+
+    // pengumumanby id
+    @GET("pengumumanbyid/{id}")
+    Call<PengumumanResponse> pengumumanbyid(@Path("id") String id);
 }

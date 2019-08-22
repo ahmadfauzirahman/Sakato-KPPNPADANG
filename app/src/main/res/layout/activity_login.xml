@@ -92,7 +92,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@+id/imageView_userIcon"
                         android:background="@color/editTextBG"
-                        android:hint="Username"
+                        android:hint="Kode Stakeholder"
                         android:inputType="text"
                         android:maxLines="1"
                         android:paddingLeft="20dp"
@@ -156,19 +156,6 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="SIGN IN"
                     android:textColor="@color/white" />
-
-                <TextView
-                    android:id="@+id/register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/login_button"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Register!"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:textColor="@color/textColor" />
-
             </RelativeLayout>
 
 

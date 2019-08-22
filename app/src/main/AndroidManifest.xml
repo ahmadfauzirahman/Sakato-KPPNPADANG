@@ -22,12 +22,60 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".PenolakanActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="Monitoring Penolakan Staker">
+            android:name=".SpmDetailActivity"
+            android:label="Detail Spm">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.ahmadfauzirahman.sakato.PenolakanActivity" />
+        </activity>
+
+        <service
+            android:name=".FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".Splashscreen"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PengumumanActivity"
+            android:label="Pengumuman Sakato">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ahmadfauzirahman.sakato.MainActivity" />
+        </activity>
+        <activity
+            android:name=".PengumumanDetailActiviy"
+            android:label="Pengumuman Detail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ahmadfauzirahman.sakato.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ProfileStakeholder"
+            android:label="Profil Saya"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ahmadfauzirahman.sakato.MainActivity" />
+        </activity>
+        <activity
+            android:name=".PenolakanActivity"
+            android:label="Monitoring Penolakan Staker"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ahmadfauzirahman.sakato.MainActivity" />
         </activity>
         <activity
             android:name=".Test"
@@ -39,7 +87,7 @@
             android:parentActivityName=".ListPerbendaharaan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ListPerbendaharaan" />
+                android:value="com.ahmadfauzirahman.sakato.ListPerbendaharaan" />
         </activity>
         <activity
             android:name=".ListPerbendaharaan"
@@ -47,7 +95,7 @@
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.ahmadfauzirahman.sakato.MainActivity" />
         </activity>
         <activity
             android:name=".FormBendahara"
@@ -56,7 +104,7 @@
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ListPerbendaharaan" />
+            android:value="com.ahmadfauzirahman.sakato.ListPerbendaharaan" />
 
         <activity
             android:name=".RegisterAc"
@@ -68,16 +116,6 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Splashscreen"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
